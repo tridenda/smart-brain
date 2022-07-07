@@ -1,7 +1,6 @@
 import { Component } from "react";
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
-import Clarifai from "clarifai";
 
 import SignIn from "./components/SignIn/SignIn";
 import SignUp from "./components/SignUp/SignUp";
@@ -11,10 +10,6 @@ import Rank from "./components/Rank/Rank";
 import ImageLinkForm from "./components/ImageLinkForm/ImageLinkForm";
 import FaceRecognition from "./components/FaceRecognition/FaceRecognition";
 import "./App.css";
-
-const clarifaiApp = new Clarifai.App({
-  apiKey: "8e2278529e8b48ebb40da538b1e54467",
-});
 
 // Begin tsparticles
 const particlesInit = async (main) => {
