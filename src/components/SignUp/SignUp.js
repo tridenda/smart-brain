@@ -30,7 +30,7 @@ class SignUp extends Component {
   };
 
   onSubmitSignUp = () => {
-    fetch("http://localhost:8000/signup", {
+    fetch("https://trd2022-smartbrain-api.herokuapp.com/signup", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
