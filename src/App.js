@@ -1,7 +1,6 @@
 import { Component } from "react";
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
-import Clarifai from "clarifai";
 
 import SignIn from "./components/SignIn/SignIn";
 import SignUp from "./components/SignUp/SignUp";
@@ -11,10 +10,6 @@ import Rank from "./components/Rank/Rank";
 import ImageLinkForm from "./components/ImageLinkForm/ImageLinkForm";
 import FaceRecognition from "./components/FaceRecognition/FaceRecognition";
 import "./App.css";
-
-const clarifaiApp = new Clarifai.App({
-  apiKey: "8e2278529e8b48ebb40da538b1e54467",
-});
 
 // Begin tsparticles
 const particlesInit = async (main) => {
@@ -157,7 +152,7 @@ class App extends Component {
 
   onPictureSubmit = () => {
     this.setState({ imageUrl: this.state.input });
-    fetch("http://localhost:8000/imageurl", {
+    fetch("https://trd2022-smartbrain-api.herokuapp.com/imageurl", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -167,7 +162,7 @@ class App extends Component {
       .then((response) => response.json())
       .then((response) => {
         if (response) {
-          fetch("http://localhost:8000/image", {
+          fetch("https://trd2022-smartbrain-api.herokuapp.com/image", {
             method: "put",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
