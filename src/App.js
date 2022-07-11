@@ -167,13 +167,4 @@ const App = () => {
   );
 };
 
-// class App extends Component {
-
-//   };
-
-//   render() {
-//     const { isSignedIn, imageUrl, route, box } = this.state;
-
-// }
-
 export default App;
