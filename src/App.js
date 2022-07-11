@@ -11,7 +11,6 @@ import ImageLinkForm from "./components/ImageLinkForm/ImageLinkForm";
 import FaceRecognition from "./components/FaceRecognition/FaceRecognition";
 import "./App.css";
 
-// Begin tsparticles
 const particlesInit = async (main) => {
   // you can initialize the tsParticles instance (main) here, adding custom shapes or presets
   // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
@@ -22,77 +21,31 @@ const particlesInit = async (main) => {
 const options = {
   background: {
     color: {
-      value: "#0d47a1",
+      value: "#000",
     },
-    opacity: 0.2,
-  },
-  fpsLimit: 120,
-  interactivity: {
-    events: {
-      onClick: {
-        enable: true,
-        mode: "push",
-      },
-      onHover: {
-        enable: true,
-        mode: "repulse",
-      },
-      resize: true,
-    },
-    modes: {
-      push: {
-        quantity: 4,
-      },
-      repulse: {
-        distance: 200,
-        duration: 0.4,
-      },
-    },
+    opacity: 0.3,
   },
   particles: {
-    color: {
-      value: "#ffffff",
-    },
     links: {
-      color: "#ffffff",
       distance: 150,
       enable: true,
-      opacity: 0.5,
-      width: 1,
-    },
-    collisions: {
-      enable: true,
+      triangles: {
+        enable: false,
+        opacity: 0.05,
+      },
     },
     move: {
-      direction: "none",
       enable: true,
-      outModes: {
-        default: "bounce",
-      },
-      random: true,
-      speed: 3,
-      straight: false,
+      speed: 2,
     },
-    number: {
-      density: {
-        enable: true,
-        area: 800,
-      },
-      value: 80,
-    },
-    opacity: {
-      value: 0.5,
+    size: {
+      value: 2,
     },
     shape: {
       type: "circle",
     },
-    size: {
-      value: { min: 1, max: 5 },
-    },
   },
-  detectRetina: true,
 };
-// End tsparticles
 
 const initialState = {
   input: "",
