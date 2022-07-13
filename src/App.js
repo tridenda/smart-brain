@@ -91,7 +91,7 @@ const App = () => {
   };
 
   const onInputChange = (event) => {
-    setInput(event.target.input);
+    setInput(event.target.value);
   };
 
   const onPictureSubmit = () => {
