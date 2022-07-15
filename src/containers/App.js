@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
+import { connect } from "react-redux";
 
 import SignIn from "../components/SignIn/SignIn";
 import SignUp from "../components/SignUp/SignUp";
@@ -11,6 +12,20 @@ import ImageLinkForm from "../components/ImageLinkForm/ImageLinkForm";
 import FaceRecognition from "../components/FaceRecognition/FaceRecognition";
 import "./App.css";
 
+import { setImageLinkInput } from "../actions";
+
+const mapStateToProps = (state) => {
+  return { imageLinkInput: state.imageLinkInput };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onImageLinkInputChange: (event) => {
+      dispatch(setImageLinkInput(event.target.value));
+    },
+  };
+};
+
 const particlesInit = async (main) => {
   // you can initialize the tsParticles instance (main) here, adding custom shapes or presets
   // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
@@ -18,6 +33,7 @@ const particlesInit = async (main) => {
   await loadFull(main);
 };
 
+// This option is for customize animation background
 const options = {
   background: {
     color: {
@@ -47,8 +63,7 @@ const options = {
   },
 };
 
-const App = ({ store }) => {
-  const [input, setInput] = useState("");
+const App = ({ imageLinkInput, onImageLinkInputChange }) => {
   const [imageUrl, setImageUrl] = useState("");
   const [box, setBox] = useState({});
   const [route, setRoute] = useState("signin");
@@ -90,17 +105,13 @@ const App = ({ store }) => {
     setBox(box);
   };
 
-  const onImageLinkInputChange = (event) => {
-    setInput(event.target.value);
-  };
-
   const onPictureSubmit = () => {
-    setImageUrl(input);
+    setImageUrl(imageLinkInput);
     fetch("https://trd2022-smartbrain-api.herokuapp.com/imageurl", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        input,
+        input: imageLinkInput,
       }),
     })
       .then((response) => response.json())
@@ -126,7 +137,6 @@ const App = ({ store }) => {
 
   const onRouteChange = (route) => {
     if (route === "signout") {
-      setInput("");
       setImageUrl("");
       setBox({});
       setRoute("");
@@ -167,4 +177,4 @@ const App = ({ store }) => {
   );
 };
 
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);
